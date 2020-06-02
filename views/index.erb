@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Dispatch Updates</title>
+		<link href="/style.css" rel="stylesheet" type="text/css">
+		 <meta http-equiv="refresh" content="120">
+	</head>
+	<body>
+		<center><img src="/city.png" style="max-width: 400px;" /></center>
+		<center><h2>City Dispatch Updates</h2></center>
+		<br />
+		<center><p>We listen to the <a href="">City Police and Fire dispatch feed</a> and save a clip every time someone speaks for easy review</p></center>
+		<center>
+		<table>
+			<tr>
+				<th>Timestamp</th>
+				<th>Duration</th>
+				<th>Clip</th>
+			</tr>
+			<% for key in keys %>
+			<tr>
+				<td><%= timestamps[key] %></td>
+				<td><%= durations[key] %></td>
+				<td><audio src="/audio/<%= key %>.mp3" preload=none controls /></td>
+			</tr>
+			<% end %>
+		</table>
+		</center>
+	</body>
+</html>
