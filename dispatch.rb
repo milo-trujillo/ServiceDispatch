@@ -20,7 +20,27 @@ class Dispatch < Sinatra::Base
 		redis.incr("hits")
 		durations = redis.hgetall("durations")
 		timestamps = redis.hgetall("timestamps")
+		keys = durations.keys.sort.reverse.first(30)
+		erb :index, :locals => {:keys => keys, :durations => durations, :timestamps => timestamps, :title => "30 Most Recent Broadcasts"}
+	end
+
+	get '/day' do
+		redis = Redis.new()
+		redis.incr("hits")
+		durations = redis.hgetall("durations")
+		timestamps = redis.hgetall("timestamps")
+		now = Time.now.to_i
+		yesterday = (now - 86400).to_s
+		keys = durations.keys.select{|k| k >= yesterday }.sort.reverse
+		erb :index, :locals => {:keys => keys, :durations => durations, :timestamps => timestamps, :title => "Broadcasts from past 24 hours"}
+	end
+
+	get '/all' do
+		redis = Redis.new()
+		redis.incr("hits")
+		durations = redis.hgetall("durations")
+		timestamps = redis.hgetall("timestamps")
 		keys = durations.keys.sort.reverse
-		erb :index, :locals => {:keys => keys, :durations => durations, :timestamps => timestamps}
+		erb :index, :locals => {:keys => keys, :durations => durations, :timestamps => timestamps, :title => "All Broadcasts"}
 	end
 end
