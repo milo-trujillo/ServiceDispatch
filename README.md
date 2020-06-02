@@ -20,11 +20,11 @@ Move the contents of this directory to wherever you'll be hosting from (`/var/ww
 
 Now move `nginx_servicedispatch` into `/etc/nginx/sites_available` and run `ln -s /etc/nginx/sites_available/nginx_servicedispatch /etc/nginx/sites_enabled/nginx_servicedispatch`.
 
-Finally, start this website with:
+Finally, from the directory you've installed the website into, start this website with:
 
 ```
-unicorn -c /folder/you/installed/to/unicorn.conf -E deployment -D
-nohup /folder/you/installed/to/audio/pipeline.sh
+unicorn -c unicorn.rb -E deployment -D
+nohup audio/pipeline.sh
 ```
 
 Now, if nginx and redis are running, everything _should_ be available over http. Congratulations!
