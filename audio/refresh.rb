@@ -15,7 +15,7 @@ DestDir = __dir__ + "/../public/audio/"
 
 redis = Redis.new()
 clips = Set.new(redis.hgetall("durations").keys)
-mp3s = Dir.glob(__dir__ + "/troy*mp3")
+mp3s = Dir.glob(__dir__ + "/dispatch*mp3")
 for mp3 in mp3s
 	ctime = File.ctime(mp3).to_i
 	readable_ctime = File.ctime(mp3).to_s

@@ -20,7 +20,7 @@ echo "Pipe initialized."
 
 curl -L --silent $URL > $PIPE &
 echo "Downloading audio stream..."
-sox -V3 -t mp3 $PIPE troypd_part_.mp3 silence 1 0.5 $SILENCE 1 $PAUSE $SILENCE : newfile : restart &
+sox -V3 -t mp3 $PIPE dispatch_part_.mp3 silence 1 0.5 $SILENCE 1 $PAUSE $SILENCE : newfile : restart &
 echo "Splitting audio stream based on silence."
 
 echo "Will now check for audio clips every $POLL seconds."
