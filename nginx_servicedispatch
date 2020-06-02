@@ -1,0 +1,33 @@
+upstream unicorn_server {
+	server unix:INSTALLPATH/tmp/sockets/unicorn.sock fail_timeout=0;
+}
+
+# Default server configuration
+#
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root INSTALLPATH/public;
+
+	# Add index.php to the list if you are using PHP
+	index index.html index.htm index.nginx-debian.html;
+
+	# Change this to your domain name if you're hosting
+	# additional websites on the same server
+	#server_name _;
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri @app;
+	}
+
+	location @app {
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header Host $http_host;
+		proxy_redirect off;
+		proxy_pass http://unicorn_server;
+	}
+}
+
