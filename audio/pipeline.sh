@@ -7,10 +7,8 @@ POLL=60 # How frequently to check for new clips, in seconds
 
 # You probably don't need to change anything after this line
 
-# Path to this script
-SCRIPT=$(readlink -f "$0")
 # Folder this script is in
-SCRIPTPATH=$(dirname "$SCRIPT")
+SCRIPTPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # Make sure all the audio files end up in the intended folder
 cd $SCRIPTPATH
 
