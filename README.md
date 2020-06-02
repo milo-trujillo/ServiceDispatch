@@ -1,8 +1,10 @@
 # ServiceDispatch
 
-ServiceDispatch automatically log emergency services like police and fire department dispatch channels. Given an audio stream on the web for emergency announcement, this software will record all non-silence as individual audio clips, record the timestamp and duration of each clip, and make all of it available through a web interface. This is the codebase originally used for [Troy Dispatch](https://troydispatch.com/), open sourced to empower other cities to create their own dispatch logs.
+ServiceDispatch automatically logs emergency services like police and fire department dispatch channels. Given an audio stream on the web for emergency announcements, this software will record all non-silence as individual audio clips, record the timestamp and duration of each conversation, and make all of it available through a web interface. This is the codebase originally used for [Troy Dispatch](https://troydispatch.com/), open sourced to empower other cities to create their own dispatch logs.
 
 ## Installation Quick Guide
+
+**This guide assumes you've created a new debian or ubuntu-like server to host ServiceDispatch**
 
 Install package dependencies:
 
@@ -18,7 +20,7 @@ Move the contents of this directory to wherever you'll be hosting from (`/var/ww
 ./install.sh
 ```
 
-Now move `nginx_servicedispatch` into `/etc/nginx/sites_available` and run `ln -s /etc/nginx/sites_available/nginx_servicedispatch /etc/nginx/sites_enabled/nginx_servicedispatch`.
+Now move `nginx_servicedispatch` into `/etc/nginx/sites_available/default`.
 
 Finally, from the directory you've installed the website into, start this website with:
 
