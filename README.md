@@ -12,7 +12,7 @@ Install package dependencies:
 apt install nginx ruby sox libsox-fmt-mp3 curl redis-server lsof
 ```
 
-Edit `audio/pipeline.sh` to set the URL of your emergency service broadcast.
+Edit `audio/pipeline.rb` to set the URL of your emergency service broadcast.
 
 Move the contents of this directory to wherever you'll be hosting from (`/var/www/dispatch` is a good choice), then run:
 
@@ -26,7 +26,7 @@ Finally, from the directory you've installed the website into, start this websit
 
 ```
 unicorn -c unicorn.rb -E deployment -D
-nohup audio/pipeline.sh
+nohup audio/pipeline.rb
 ```
 
 Now, if nginx and redis are running, everything _should_ be available over http. Congratulations!
@@ -43,4 +43,4 @@ ServiceDispatch consists of about 3 components:
 
 ## Silence Tuning
 
-If ServiceDispatch is ignoring real audio, is triggered by static too easily, or is breaking conversations into too many audio clips, you may need to adjust the variables at the start of `audio/pipeline.sh`. SILENCE controls the decibel threshold that `sox` will recognize as speech, and PAUSE controls how many seconds of silence before `sox` marks the conversation as "over" and ends the audio clip.
+If ServiceDispatch is ignoring real audio, is triggered by static too easily, or is breaking conversations into too many audio clips, you may need to adjust the variables at the start of `audio/pipeline.rb`. SILENCE controls the decibel threshold that `sox` will recognize as speech, and PAUSE controls how many seconds of silence before `sox` marks the conversation as "over" and ends the audio clip.
