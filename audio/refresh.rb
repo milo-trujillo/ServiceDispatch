@@ -20,6 +20,10 @@ for mp3 in mp3s
 	ctime = File.ctime(mp3).to_i
 	readable_ctime = File.ctime(mp3).to_s
 	if( ! clips.include?(ctime) ) # New file!
+		inUse = `lsof #{mp3}`.size > 0
+		if( inUse )
+			next # Skip files sox is still writing to
+		end
 		begin
 			AudioInfo.open(mp3) do |info|
 				duration = info.length

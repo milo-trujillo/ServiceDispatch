@@ -9,7 +9,7 @@ ServiceDispatch automatically logs emergency services like police and fire depar
 Install package dependencies:
 
 ```
-apt install nginx ruby sox libsox-fmt-mp3 curl redis-server
+apt install nginx ruby sox libsox-fmt-mp3 curl redis-server lsof
 ```
 
 Edit `audio/pipeline.sh` to set the URL of your emergency service broadcast.
